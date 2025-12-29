@@ -1,0 +1,5 @@
+{
+  "name": "VietHistory Exam AI - Lịch Sử 9",
+  "description": "Ứng dụng AI tạo đề thi và kiểm tra Lịch Sử lớp 9 theo chuẩn Bộ Giáo Dục (KNTT, Cánh Diều, CTST). Tự động tạo ma trận, đề thi, đáp án và file Word.",
+  "requestFramePermissions": []
+}
