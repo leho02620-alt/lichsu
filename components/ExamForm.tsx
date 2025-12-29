@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { ExamConfig, ExamType, Textbook, AVAILABLE_MODELS, AIModel } from '../types';
-import { BookOpen, Clock, FileText, Settings, Layers, Hash, Sparkles } from 'lucide-react';
+import { ExamConfig, ExamType, Textbook, AVAILABLE_MODELS, AIModel } from '../types.ts';
+import { Settings, Sparkles } from 'lucide-react';
 
 interface Props {
   config: ExamConfig;
@@ -38,7 +38,6 @@ const ExamForm: React.FC<Props> = ({ config, setConfig, isLoading, activeModel, 
         <h2 className="text-2xl font-bold text-gray-800">Cấu hình Đề Thi</h2>
       </div>
 
-      {/* Model Selection Cards */}
       <div>
         <label className="block text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
           <Sparkles className="w-4 h-4 text-amber-500" /> Chọn Model AI
@@ -66,7 +65,6 @@ const ExamForm: React.FC<Props> = ({ config, setConfig, isLoading, activeModel, 
         </div>
       </div>
 
-      {/* Main Info */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Bộ Sách</label>
@@ -91,7 +89,6 @@ const ExamForm: React.FC<Props> = ({ config, setConfig, isLoading, activeModel, 
         </div>
       </div>
 
-      {/* Topic Input */}
       <div>
         <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Chủ đề / Nội dung ôn tập</label>
         <textarea
@@ -99,11 +96,10 @@ const ExamForm: React.FC<Props> = ({ config, setConfig, isLoading, activeModel, 
           onChange={(e) => handleChange('topic', e.target.value)}
           rows={2}
           className="w-full rounded-lg border-gray-300 border p-3 text-sm focus:ring-2 focus:ring-indigo-500 bg-gray-50"
-          placeholder="Nhập các chủ đề cần ra đề..."
+          placeholder="Ví dụ: Lịch sử Việt Nam từ 1919 đến 1930..."
         />
       </div>
 
-      {/* Question Counts */}
       <div className="grid grid-cols-3 gap-3">
         <div>
           <label className="block text-[10px] font-bold text-gray-500 uppercase mb-1">Số câu TN</label>
@@ -134,7 +130,6 @@ const ExamForm: React.FC<Props> = ({ config, setConfig, isLoading, activeModel, 
         </div>
       </div>
 
-      {/* Difficulty Ratio */}
       <div className="bg-indigo-50 p-4 rounded-xl border border-indigo-100">
          <label className="block text-xs font-bold text-indigo-900 mb-3 flex items-center justify-between">
           <span>Mức độ nhận thức (%)</span>
@@ -171,18 +166,7 @@ const ExamForm: React.FC<Props> = ({ config, setConfig, isLoading, activeModel, 
                 : "bg-gradient-to-r from-indigo-600 to-blue-600 text-white hover:shadow-indigo-500/30"
         }`}
       >
-        {isLoading ? (
-          <div className="flex flex-col items-center leading-none">
-            <span className="flex items-center gap-2 mb-1">
-              <svg className="animate-spin h-4 w-4 text-white" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
-              </svg>
-              AI ĐANG XỬ LÝ...
-            </span>
-            <span className="text-[10px] opacity-80 font-normal">Đang dùng: {activeModel}</span>
-          </div>
-        ) : isError ? "THỬ LẠI NGAY" : "TẠO ĐỀ THI NGAY"}
+        {isLoading ? "AI ĐANG XỬ LÝ..." : isError ? "THỬ LẠI NGAY" : "TẠO ĐỀ THI NGAY"}
       </button>
     </div>
   );

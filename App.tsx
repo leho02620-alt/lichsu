@@ -1,10 +1,9 @@
 
 import React, { useState } from 'react';
-import { DEFAULT_CONFIG, ExamConfig, GeneratedExamData, AIModel } from './types';
-import ExamForm from './components/ExamForm';
-import ExamPreview from './components/ExamPreview';
-import { generateExamContent } from './services/geminiService';
-// Added Sparkles to imports and removed unused Key
+import { DEFAULT_CONFIG, ExamConfig, GeneratedExamData, AIModel } from './types.ts';
+import ExamForm from './components/ExamForm.tsx';
+import ExamPreview from './components/ExamPreview.tsx';
+import { generateExamContent } from './services/geminiService.ts';
 import { GraduationCap, History, Settings, AlertCircle, Sparkles } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -20,7 +19,6 @@ const App: React.FC = () => {
     setExamData(null);
     
     try {
-      // API Key is handled within the service using process.env.API_KEY
       const data = await generateExamContent(config, (model) => {
         setActiveModel(model);
       });
@@ -37,9 +35,6 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
-      {/* API key configuration UI removed per developer guidelines */}
-
-      {/* Header */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -58,7 +53,6 @@ const App: React.FC = () => {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         {error && (
             <div className="mb-6 bg-red-50 border-l-4 border-red-500 text-red-800 px-6 py-4 rounded-r-lg shadow-sm animate-in slide-in-from-top duration-300">
@@ -73,7 +67,6 @@ const App: React.FC = () => {
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Left Column: Form */}
             <div className={`lg:col-span-4 lg:sticky lg:top-24 transition-all duration-500 ${examData ? '' : 'lg:col-span-6 lg:col-start-4'}`}>
                 <ExamForm 
                     config={config} 
@@ -85,7 +78,6 @@ const App: React.FC = () => {
                 />
             </div>
 
-            {/* Right Column: Preview */}
             <div className="lg:col-span-8 h-full">
               {examData ? (
                   <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -104,7 +96,6 @@ const App: React.FC = () => {
                         Vui lòng đợi trong giây lát.
                       </p>
                     </div>
-                    {/* Progress indicator logic */}
                     <div className="w-full max-w-sm bg-gray-100 rounded-full h-2 mt-4 overflow-hidden">
                       <div className="bg-indigo-600 h-full animate-progress-indeterminate"></div>
                     </div>
@@ -123,13 +114,6 @@ const App: React.FC = () => {
       <footer className="bg-white border-t py-8 mt-12">
         <div className="max-w-7xl mx-auto px-4 text-center">
             <p className="text-gray-400 text-xs font-medium uppercase tracking-widest">© {new Date().getFullYear()} VietHistory AI - Digital Education Tools</p>
-            <div className="flex justify-center gap-4 mt-4 text-[10px] text-gray-400 font-bold uppercase">
-               <a href="#" className="hover:text-indigo-600 transition-colors">Điều khoản</a>
-               <span>•</span>
-               <a href="#" className="hover:text-indigo-600 transition-colors">Hướng dẫn</a>
-               <span>•</span>
-               <a href="#" className="hover:text-indigo-600 transition-colors">Hỗ trợ</a>
-            </div>
         </div>
       </footer>
 
